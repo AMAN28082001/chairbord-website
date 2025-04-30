@@ -6,6 +6,7 @@ import Contact from "./pages/contact";
 import Product from "./pages/product";
 import Why from "./pages/why";
 import "./App.css";
+
 function App() {
   return (
     <Router>
