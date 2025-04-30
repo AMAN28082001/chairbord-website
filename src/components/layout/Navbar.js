@@ -35,7 +35,7 @@ const Navbar = () => {
 
                 {/* Desktop Nav */}
                 <ul style={styles.navLinks} className="desktop-nav">
-                    <li><a href="/home" style={styles.navLink}>Home</a></li>
+                    <li><a href="/" style={styles.navLink}>Home</a></li>
                     <li><a href="/why" style={styles.navLink}>Why</a></li>
                     <li><a href="/about" style={styles.navLink}>About</a></li>
                     <li><a href="#services" style={styles.navLink}>Product</a></li>
@@ -53,7 +53,7 @@ const Navbar = () => {
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
                 <ul style={styles.mobileMenu}>
-                    <li><a href="/home" style={styles.navLink}>Home</a></li>
+                    <li><a href="/" style={styles.navLink}>Home</a></li>
                     <li><a href="/why" style={styles.navLink}>Why</a></li>
                     <li><a href="/about" style={styles.navLink}>About</a></li>
                     <li><a href="#services" style={styles.navLink}>Product</a></li>
