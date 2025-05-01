@@ -49,7 +49,7 @@ const EntrepreneurProfile = () => {
 const getStyles = (isMobile) => ({
   container: {
     width: '100%',
-    padding: isMobile ? '60px 15px' : '80px 20px',
+    padding: isMobile ? '40px 15px' : '80px 20px',
     backgroundColor: '#ffffff',
     boxSizing: 'border-box'
   },
@@ -57,13 +57,14 @@ const getStyles = (isMobile) => ({
     maxWidth: '1200px',
     margin: '0 auto',
     display: 'flex',
-    flexDirection: isMobile ? 'column' : 'row', // content left, image right
-    alignItems: 'flex-start',
+    flexDirection: isMobile ? 'column' : 'row',
+    alignItems: isMobile ? 'center' : 'flex-start',
     gap: isMobile ? '40px' : '60px'
   },
   contentContainer: {
     flex: '1',
     maxWidth: isMobile ? '100%' : '60%',
+    textAlign: isMobile ? 'center' : 'left',
     boxSizing: 'border-box'
   },
   imageContainer: {
@@ -72,12 +73,16 @@ const getStyles = (isMobile) => ({
     borderRadius: '8px',
     overflow: 'hidden',
     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    display: 'flex',
+    justifyContent: 'center'
   },
   profileImage: {
     width: '100%',
+    maxWidth: '100%',
     height: 'auto',
-    display: 'block'
+    display: 'block',
+    borderRadius: '8px'
   },
   name: {
     fontSize: 'clamp(24px, 3vw, 32px)',
@@ -85,14 +90,14 @@ const getStyles = (isMobile) => ({
     color: '#2c3e50',
     margin: '0 0 10px 0',
     lineHeight: '1.3',
-    wordWrap: 'break-word'
+    wordBreak: 'break-word'
   },
   title: {
     fontSize: 'clamp(18px, 2vw, 24px)',
     fontWeight: '600',
     color: '#555',
     margin: '0 0 30px 0',
-    wordWrap: 'break-word'
+    wordBreak: 'break-word'
   },
   description: {
     marginBottom: '30px'
@@ -102,8 +107,9 @@ const getStyles = (isMobile) => ({
     lineHeight: '1.8',
     color: '#333',
     margin: '0 0 20px 0',
-    wordWrap: 'break-word'
+    wordBreak: 'break-word'
   }
 });
+
 
 export default EntrepreneurProfile;

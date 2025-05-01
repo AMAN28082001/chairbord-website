@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const BrandVision = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize(); // set initially
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const styles = getStyles(isMobile);
+
   return (
     <div style={styles.container}>
       <div style={styles.content}>
@@ -9,17 +22,15 @@ const BrandVision = () => {
             <span style={styles.brandText}>BRAND</span>
             <h2 style={styles.title}>VISION & STRATEGY</h2>
           </div>
-          
+
           <div style={styles.strategyContent}>
             <p style={styles.visionText}>
               To make our future more vibrant and sustainable by using green energy to save the earth.
             </p>
-            
             <p style={styles.strategyText}>
-              We are also committed to maintain our leadership position in the manufacture of solar products, 
+              We are also committed to maintain our leadership position in the manufacture of solar products,
               delivering higher efficiency to the global photovoltaic industry.
             </p>
-            
             <p style={styles.goalText}>
               To achieve 8 GW production capacity by 2025 to serve green energy demand internationally.
             </p>
@@ -46,33 +57,34 @@ const BrandVision = () => {
   );
 };
 
-const styles = {
+const getStyles = (isMobile) => ({
   container: {
     width: '100%',
     backgroundColor: '#ffffff',
-    padding: '80px 0',
+    padding: isMobile ? '40px 0' : '80px 0',
   },
   content: {
     maxWidth: '1200px',
     margin: '0 auto',
     padding: '0 20px',
     display: 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
     alignItems: 'center',
-    gap: '60px',
+    gap: isMobile ? '40px' : '60px',
   },
   textSection: {
     flex: 1,
-    minWidth: '50%',
+    width: '100%',
   },
   videoSection: {
     flex: 1,
-    minWidth: '50%',
+    width: '100%',
     borderRadius: '8px',
     overflow: 'hidden',
     boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
   },
   header: {
-    marginBottom: '40px',
+    marginBottom: '30px',
   },
   brandText: {
     fontSize: '18px',
@@ -84,30 +96,30 @@ const styles = {
     marginBottom: '10px',
   },
   title: {
-    fontSize: '32px',
+    fontSize: isMobile ? '28px' : '32px',
     fontWeight: 'bold',
     color: '#2c3e50',
     margin: '0',
     lineHeight: '1.3',
   },
   strategyContent: {
-    maxWidth: '600px',
+    maxWidth: isMobile ? '100%' : '600px',
   },
   visionText: {
-    fontSize: '20px',
+    fontSize: '18px',
     lineHeight: '1.6',
     color: '#333',
-    marginBottom: '25px',
+    marginBottom: '20px',
     fontStyle: 'italic',
   },
   strategyText: {
-    fontSize: '18px',
+    fontSize: '16px',
     lineHeight: '1.6',
     color: '#333',
     marginBottom: '20px',
   },
   goalText: {
-    fontSize: '18px',
+    fontSize: '16px',
     lineHeight: '1.6',
     color: '#333',
     fontWeight: '600',
@@ -118,35 +130,6 @@ const styles = {
     height: 'auto',
     display: 'block',
   },
-  // Responsive styles
-  '@media (max-width: 768px)': {
-    content: {
-      flexDirection: 'column',
-      gap: '40px',
-    },
-    textSection: {
-      order: 1,
-    },
-    videoSection: {
-      order: 2,
-      width: '100%',
-    },
-    strategyContent: {
-      maxWidth: '100%',
-    }
-  }
-};
-
-// Helper function to apply media queries
-const applyMediaQueries = (styleObj) => {
-  const result = {};
-  for (const key in styleObj) {
-    if (key.startsWith('@media')) {
-      continue;
-    }
-    result[key] = styleObj[key];
-  }
-  return result;
-};
+});
 
 export default BrandVision;

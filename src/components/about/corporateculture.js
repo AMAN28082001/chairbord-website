@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const CorporateCulture = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateMedia = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    updateMedia(); // Initial check
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
+
+  const styles = getStyles(isMobile);
+
   return (
     <div style={styles.container}>
       <div style={styles.innerContainer}>
@@ -20,38 +33,39 @@ const CorporateCulture = () => {
   );
 };
 
-const styles = {
+const getStyles = (isMobile) => ({
   container: {
     width: '100%',
-    backgroundColor: '#f8f9fa', // Grey background color
+    backgroundColor: '#f8f9fa',
   },
   innerContainer: {
     maxWidth: '1200px',
     margin: '0 auto',
-    padding: '60px 20px', // Added side padding for mobile
+    padding: isMobile ? '40px 20px' : '80px 40px',
   },
   content: {
     width: '100%',
     textAlign: 'center',
   },
   heading: {
-    fontSize: '32px',
+    fontSize: isMobile ? '24px' : '32px',
     fontWeight: 'bold',
     color: '#2c3e50',
-    marginBottom: '30px',
+    marginBottom: isMobile ? '20px' : '30px',
     lineHeight: '1.3',
   },
   text: {
-    fontSize: '18px',
+    fontSize: isMobile ? '16px' : '18px',
     lineHeight: '1.6',
     color: '#333',
     maxWidth: '800px',
     margin: '0 auto',
+    padding: isMobile ? '0 10px' : '0',
   },
   strongText: {
     fontWeight: '600',
     color: '#2c3e50',
   },
-};
+});
 
 export default CorporateCulture;
