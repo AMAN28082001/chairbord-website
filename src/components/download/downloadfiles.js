@@ -127,7 +127,7 @@ const styles = {
   toggleIcon: {
     fontSize: "24px",
     fontWeight: "bold",
-    color: "#f39c12",
+    color: "#3674B5",
     userSelect: "none",
   },
   itemsList: {
@@ -141,7 +141,7 @@ const styles = {
     backgroundColor: "#f9f9f9",
     borderRadius: "6px",
     padding: "15px",
-    borderLeft: "4px solid #f1c40f",
+    borderLeft: "4px solid #A1E3F9",
   },
   itemHeader: {
     display: "flex",
@@ -162,7 +162,7 @@ const styles = {
     marginBottom: "10px",
   },
   downloadButton: {
-    backgroundColor: "#f1c40f",
+    backgroundColor: "#D1F8EF",
     color: "#2c3e50",
     padding: "8px 14px",
     borderRadius: "4px",

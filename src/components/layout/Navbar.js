@@ -1,137 +1,197 @@
 import React, { useEffect, useState } from 'react';
+import LeadModal from './leadmodal';
 
 const Navbar = () => {
-    const [scrolled, setScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
+  const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
-    return (
-        <nav
-            style={{
-                ...styles.navbar,
-                backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.9)' : 'transparent',
-                transition: 'background-color 0.3s ease',
-            }}
-        >
-            <div style={styles.navContainer}>
-                <div style={styles.logo}>
-                    <img
-                        src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
-                        alt="Logo"
-                        style={{ height: '40px' }}
-                    />
-                </div>
+  return (
+    <>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav-container">
+          <div className="logo">
+            <img
+              src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
+              alt="Logo"
+              className="logo-img"
+            />
+          </div>
 
-                {/* Desktop Nav */}
-                <ul style={styles.navLinks} className="desktop-nav">
-                    <li><a href="/" style={styles.navLink}>Home</a></li>
-                    <li><a href="/why" style={styles.navLink}>Why</a></li>
-                    <li><a href="/about" style={styles.navLink}>About</a></li>
-                    <li><a href="#services" style={styles.navLink}>Product</a></li>
-                    <li><a href="/download" style={styles.navLink}>Download</a></li>
-                    <li><a href="/contact" style={styles.navLink}>Contact</a></li>
-                </ul>
+          <ul className="nav-links desktop-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/why">Why</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="#services">Product</a></li>
+            <li><a href="/download">Download</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
 
-                {/* Hamburger Icon */}
-                <div className="hamburger" onClick={toggleMobileMenu}>
-                    <div style={styles.bar}></div>
-                    <div style={styles.bar}></div>
-                    <div style={styles.bar}></div>
-                </div>
+          <div className="right-controls">
+            <button className="enquire-button" onClick={openModal}>
+              Enquire
+            </button>
+
+            <div className="hamburger" onClick={toggleMobileMenu}>
+              <div className="bar"></div>
+              <div className="bar"></div>
+              <div className="bar"></div>
             </div>
+          </div>
+        </div>
 
-            {/* Mobile Menu */}
-            {isMobileMenuOpen && (
-                <ul style={styles.mobileMenu}>
-                    <li><a href="/" style={styles.navLink}>Home</a></li>
-                    <li><a href="/why" style={styles.navLink}>Why</a></li>
-                    <li><a href="/about" style={styles.navLink}>About</a></li>
-                    <li><a href="#services" style={styles.navLink}>Product</a></li>
-                    <li><a href="/contact" style={styles.navLink}>Contact</a></li>
-                </ul>
-            )}
-        </nav>
-    );
+        {isMobileMenuOpen && (
+          <ul className="mobile-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/why">Why</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="#services">Product</a></li>
+            <li><a href="/download">Download</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><button className="enquire-button mobile" onClick={openModal}>Enquire</button></li>
+          </ul>
+        )}
+      </nav>
+
+      {isModalOpen && <LeadModal isOpen={isModalOpen} onClose={closeModal} />}
+
+      <style>{`
+        .navbar {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 1000;
+          padding: 12px 0;
+          margin-top: -1px;
+          background-color: transparent;
+          transition: background-color 0.3s ease;
+        }
+
+        .navbar.scrolled {
+          background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .nav-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 20px;
+        }
+
+        .logo-img {
+          height: 42px;
+        }
+
+        .right-controls {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+
+        .nav-links, .mobile-menu {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 30px;
+        }
+
+        .nav-links a, .mobile-menu a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 18px;
+        }
+
+        .enquire-button {
+          background: linear-gradient(90deg, #3674B5, #578FCA, #A1E3F9, #D1F8EF);
+          background-size: 200% auto;
+          color: #fff;
+          border: none;
+          padding: 8px 16px;
+          font-size: 16px;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background-position 0.5s ease;
+        }
+
+        .enquire-button:hover {
+          background-position: right center;
+        }
+
+        .hamburger {
+          display: none;
+          flex-direction: column;
+          justify-content: space-between;
+          cursor: pointer;
+        }
+
+        .bar {
+          width: 25px;
+          height: 3px;
+          background-color: #fff;
+          margin: 3px 0;
+          transition: 0.4s;
+        }
+
+        .mobile-menu {
+          background-color: #000;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 10px 20px;
+        }
+
+        .mobile-menu li {
+          margin-bottom: 10px;
+        }
+
+        .enquire-button.mobile {
+          margin-top: 10px;
+          width: 100%;
+        }
+
+        @media (max-width: 768px) {
+          .desktop-nav {
+            display: none;
+          }
+
+          .hamburger {
+            display: flex;
+          }
+
+          .enquire-button {
+            display: none;
+          }
+
+          .logo-img {
+            height: auto;
+            max-height: 36px;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .mobile-menu {
+            display: none;
+          }
+        }
+      `}</style>
+    </>
+  );
 };
-
-const styles = {
-    navbar: {
-        position: 'fixed',
-        top: 0,
-        width: '100%',
-        zIndex: 1000,
-        padding: '10px 0',
-    },
-    navContainer: {
-        maxWidth: '1200px',
-        margin: '0 auto',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '0 20px',
-    },
-    logo: {
-        color: '#fff',
-    },
-    navLinks: {
-        listStyle: 'none',
-        display: 'flex',
-        gap: '30px',
-        margin: 0,
-        padding: 0,
-    },
-    navLink: {
-        textDecoration: 'none',
-        color: '#fff',
-        fontSize: '18px',
-    },
-    bar: {
-        width: '25px',
-        height: '3px',
-        backgroundColor: '#fff',
-        margin: '4px 0',
-        transition: '0.4s',
-    },
-    mobileMenu: {
-        listStyle: 'none',
-        padding: '10px 20px',
-        backgroundColor: '#000',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-    },
-};
-
-// Inject responsive CSS (or use Tailwind / SCSS instead in real projects)
-const styleSheet = `
-@media (max-width: 768px) {
-    .desktop-nav {
-        display: none !important;
-    }
-    .hamburger {
-        display: block !important;
-        cursor: pointer;
-    }
-}
-@media (min-width: 769px) {
-    .hamburger {
-        display: none !important;
-    }
-}
-`;
-const styleTag = document.createElement('style');
-styleTag.innerHTML = styleSheet;
-document.head.appendChild(styleTag);
 
 export default Navbar;
