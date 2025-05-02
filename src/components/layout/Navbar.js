@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import LeadModal from './leadmodal';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation(); // <-- React Router Hook
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -15,28 +17,42 @@ const Navbar = () => {
   const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const navLinks = [
+    { label: 'Home', href: '/' },
+    { label: 'Why', href: '/why' },
+    { label: 'About', href: '/about' },
+    { label: 'Product', href: '/product' },
+    { label: 'Download', href: '/download' },
+    { label: 'Contact', href: '/contact' },
+  ];
+
+  const isActive = (href) => location.pathname === href;
 
   return (
     <>
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
           <div className="logo">
-                    <img
-                        src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
-                        alt="Logo"
-                        style={{ height: '40px' }}
-                    />
+            <img
+              src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
+              alt="Logo"
+              style={{ height: '40px' }}
+            />
           </div>
 
           <ul className="nav-links desktop-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/why">Why</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/product">Product</a></li>
-            <li><a href="/download">Download</a></li>
-            <li><a href="/contact">Contact</a></li>
+            {navLinks.map(link => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={isActive(link.href) ? 'active' : ''}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
 
           <div className="right-controls">
@@ -44,7 +60,10 @@ const Navbar = () => {
               Enquire
             </button>
 
-            <div className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}>
+            <div
+              className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}
+              onClick={toggleMobileMenu}
+            >
               <div className="bar"></div>
               <div className="bar"></div>
               <div className="bar"></div>
@@ -55,20 +74,35 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="mobile-menu-container">
             <div className="mobile-menu-header">
-                    <img
-                        src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
-                        alt="Logo"
-                        style={{ height: '40px' }}
-                    />
+              <img
+                src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
+                alt="Logo"
+                style={{ height: '40px' }}
+              />
             </div>
             <ul className="mobile-menu">
-              <li><a href="/" onClick={closeMobileMenu}>Home</a></li>
-              <li><a href="/why" onClick={closeMobileMenu}>Why</a></li>
-              <li><a href="/about" onClick={closeMobileMenu}>About</a></li>
-              <li><a href="/product" onClick={closeMobileMenu}>Product</a></li>
-              <li><a href="/download" onClick={closeMobileMenu}>Download</a></li>
-              <li><a href="/contact" onClick={closeMobileMenu}>Contact</a></li>
-              <li><button className="enquire-button mobile" onClick={() => { openModal(); closeMobileMenu(); }}>Enquire</button></li>
+              {navLinks.map(link => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={closeMobileMenu}
+                    className={isActive(link.href) ? 'active' : ''}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <button
+                  className="enquire-button mobile"
+                  onClick={() => {
+                    openModal();
+                    closeMobileMenu();
+                  }}
+                >
+                  Enquire
+                </button>
+              </li>
             </ul>
           </div>
         )}
@@ -101,20 +135,14 @@ const Navbar = () => {
           padding: 0 20px;
         }
 
-        .logo-text {
-          color: #fff;
-          font-size: 24px;
-          font-weight: bold;
-          text-decoration: none;
-        }
-
         .right-controls {
           display: flex;
           align-items: center;
           gap: 15px;
         }
 
-        .nav-links, .mobile-menu {
+        .nav-links,
+        .mobile-menu {
           list-style: none;
           margin: 0;
           padding: 0;
@@ -125,10 +153,17 @@ const Navbar = () => {
           gap: 30px;
         }
 
-        .nav-links a, .mobile-menu a {
+        .nav-links a,
+        .mobile-menu a {
           text-decoration: none;
           color: #fff;
           font-size: 18px;
+        }
+
+        .nav-links a.active,
+        .mobile-menu a.active {
+          color: #A1E3F9;
+          border-bottom: 2px solid #A1E3F9;
         }
 
         .enquire-button {
@@ -183,11 +218,11 @@ const Navbar = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background-color: rgba(0, 0, 0, 0.95);
+          background-color: rgba(0, 0, 0, 0.98);
           z-index: 1000;
           display: flex;
           flex-direction: column;
-          padding-top: 70px; /* Added to account for navbar height */
+          padding-top: 70px;
         }
 
         .mobile-menu-header {
@@ -196,12 +231,6 @@ const Navbar = () => {
           align-items: center;
           padding: 20px;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-logo-text {
-          color: #fff;
-          font-size: 24px;
-          font-weight: bold;
         }
 
         .mobile-menu {
@@ -220,7 +249,6 @@ const Navbar = () => {
           display: block;
           padding: 10px 0;
         }
-
 
         .enquire-button.mobile {
           margin-top: 20px;
