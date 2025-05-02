@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Logo & Description */}
           <div className="footer-column">
             <img
-              src="https://res.cloudinary.com/du0cxgoic/image/upload/v1714371582/rayzon-logo-footer.webp"
+              src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
               alt="Rayzon Solar"
               className="footer-logo"
             />
@@ -67,7 +67,7 @@ const Footer = () => {
       {/* Embedded CSS */}
       <style>{`
         .footer {
-          background-color: #f9f9f9;
+          background-color:rgb(201, 201, 201);
           padding: 40px 20px;
           font-family: sans-serif;
         }

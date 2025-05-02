@@ -1,10 +1,14 @@
 import React from 'react';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
+import ProductBanner from '../components/product/productbanner';
 
 const Product = () => {
     return (
         <div>
-            <h1>Product Page</h1>
-            <p>Welcome to the product page!</p>
+            <Navbar/>
+            <ProductBanner/>
+            <Footer/>
         </div>
     );
 };

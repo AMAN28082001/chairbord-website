@@ -15,24 +15,26 @@ const Navbar = () => {
   const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <>
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
           <div className="logo">
-            <img
-              src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
-              alt="Logo"
-              className="logo-img"
-            />
+                    <img
+                        src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
+                        alt="Logo"
+                        style={{ height: '40px' }}
+                    />
           </div>
 
           <ul className="nav-links desktop-nav">
             <li><a href="/">Home</a></li>
             <li><a href="/why">Why</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="#services">Product</a></li>
+            <li><a href="/product">Product</a></li>
             <li><a href="/download">Download</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
@@ -42,7 +44,7 @@ const Navbar = () => {
               Enquire
             </button>
 
-            <div className="hamburger" onClick={toggleMobileMenu}>
+            <div className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}>
               <div className="bar"></div>
               <div className="bar"></div>
               <div className="bar"></div>
@@ -51,15 +53,24 @@ const Navbar = () => {
         </div>
 
         {isMobileMenuOpen && (
-          <ul className="mobile-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/why">Why</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="#services">Product</a></li>
-            <li><a href="/download">Download</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><button className="enquire-button mobile" onClick={openModal}>Enquire</button></li>
-          </ul>
+          <div className="mobile-menu-container">
+            <div className="mobile-menu-header">
+                    <img
+                        src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
+                        alt="Logo"
+                        style={{ height: '40px' }}
+                    />
+            </div>
+            <ul className="mobile-menu">
+              <li><a href="/" onClick={closeMobileMenu}>Home</a></li>
+              <li><a href="/why" onClick={closeMobileMenu}>Why</a></li>
+              <li><a href="/about" onClick={closeMobileMenu}>About</a></li>
+              <li><a href="/product" onClick={closeMobileMenu}>Product</a></li>
+              <li><a href="/download" onClick={closeMobileMenu}>Download</a></li>
+              <li><a href="/contact" onClick={closeMobileMenu}>Contact</a></li>
+              <li><button className="enquire-button mobile" onClick={() => { openModal(); closeMobileMenu(); }}>Enquire</button></li>
+            </ul>
+          </div>
         )}
       </nav>
 
@@ -90,8 +101,11 @@ const Navbar = () => {
           padding: 0 20px;
         }
 
-        .logo-img {
-          height: 42px;
+        .logo-text {
+          color: #fff;
+          font-size: 24px;
+          font-weight: bold;
+          text-decoration: none;
         }
 
         .right-controls {
@@ -138,31 +152,81 @@ const Navbar = () => {
           flex-direction: column;
           justify-content: space-between;
           cursor: pointer;
+          width: 30px;
+          height: 21px;
+          position: relative;
+          z-index: 1001;
+        }
+
+        .hamburger.open .bar:nth-child(1) {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.open .bar:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hamburger.open .bar:nth-child(3) {
+          transform: rotate(-45deg) translate(5px, -5px);
         }
 
         .bar {
-          width: 25px;
+          width: 100%;
           height: 3px;
           background-color: #fff;
-          margin: 3px 0;
-          transition: 0.4s;
+          transition: all 0.3s ease;
+        }
+
+        .mobile-menu-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.95);
+          z-index: 1000;
+          display: flex;
+          flex-direction: column;
+          padding-top: 70px; /* Added to account for navbar height */
+        }
+
+        .mobile-menu-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-logo-text {
+          color: #fff;
+          font-size: 24px;
+          font-weight: bold;
         }
 
         .mobile-menu {
-          background-color: #000;
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-          padding: 10px 20px;
+          padding: 20px;
+          flex-grow: 1;
         }
 
         .mobile-menu li {
-          margin-bottom: 10px;
+          margin-bottom: 15px;
         }
 
+        .mobile-menu a {
+          font-size: 18px;
+          display: block;
+          padding: 10px 0;
+        }
+
+
         .enquire-button.mobile {
-          margin-top: 10px;
+          margin-top: 20px;
           width: 100%;
+          padding: 12px;
+          font-size: 18px;
         }
 
         @media (max-width: 768px) {
@@ -174,18 +238,13 @@ const Navbar = () => {
             display: flex;
           }
 
-          .enquire-button {
+          .enquire-button:not(.mobile) {
             display: none;
-          }
-
-          .logo-img {
-            height: auto;
-            max-height: 36px;
           }
         }
 
         @media (min-width: 769px) {
-          .mobile-menu {
+          .mobile-menu-container {
             display: none;
           }
         }
