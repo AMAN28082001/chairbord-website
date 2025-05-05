@@ -1,7 +1,58 @@
 import React from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { FaThreads, FaXTwitter } from "react-icons/fa6";
 
 const ContactForm = () => {
+  // Contact Info
+  const contactInfo = [
+    {
+      heading: "Head Office",
+      text: "E=188, Apparel Park, RICCO Industrial Area, Mahal Road, Jagatpura, Jajpur (Rajasthan) – 302022, INDIA",
+    },
+    {
+      heading: "Company Email",
+      text: "info@mescoindia.com",
+    },
+    {
+      heading: "Contact Us",
+      text: "+91 95494 44484",
+    },
+  ];
+
+  // Social Media Links and Icons
+  const socialMediaLinks = [
+    {
+      icon: <FaFacebook style={{ color: "#3b5998", fontSize: "24px" }} />,
+      link: "https://www.facebook.com/TheChairbord",
+      label: "Facebook",
+    },
+    {
+      icon: <FaXTwitter style={{ color: "#1da1f2", fontSize: "24px" }} />,
+      link: "https://x.com/i/flow/login?redirect_after_login=%2FTheChairbord",
+      label: "Twitter",
+    },
+    {
+      icon: <FaInstagram style={{ color: "#e4405f", fontSize: "24px" }} />,
+      link: "https://www.instagram.com/chairbord.official/",
+      label: "Instagram",
+    },
+    {
+      icon: <FaLinkedin style={{ color: "#0077b5", fontSize: "24px" }} />,
+      link: "https://www.linkedin.com/company/chairbord/posts/?feedView=all",
+      label: "LinkedIn",
+    },
+    {
+      icon: <FaThreads style={{ color: "#ff0000", fontSize: "24px" }} />,
+      link: "https://www.threads.com/@chairbord.official",
+      label: "Threads",
+    },
+    {
+      icon: <FaYoutube style={{ color: "#ff0000", fontSize: "24px" }} />,
+      link: "https://www.youtube.com/@chairbord.official",
+      label: "YouTube",
+    },
+  ];
+
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>Get IN Touch</h2>
@@ -11,73 +62,32 @@ const ContactForm = () => {
         <div style={styles.flexContainer}>
           {/* Left Column - Contact Info */}
           <div style={styles.leftColumn}>
-            <div style={styles.infoSection}>
-              <h3 style={styles.infoHeading}>Head Office</h3>
-              <p style={styles.infoText}>
-                E=188, Apparel Park, RICCO Industrial Area, Mahal Road, Jagatpura,
-                <br />
-                Jajpur (Rajasthan) – 302022, INDIA
-              </p>
-            </div>
-
-            <div style={styles.infoSection}>
-              <h3 style={styles.infoHeading}>Company Email</h3>
-              <p style={styles.infoText}>info@mescoindia.com</p>
-            </div>
-
-            <div style={styles.infoSection}>
-              <h3 style={styles.infoHeading}>Contact Us</h3>
-              <p style={styles.infoText}>+91 95494 44484</p>
-            </div>
+            {contactInfo.map((info, index) => (
+              <div key={index} style={styles.infoSection}>
+                <h3 style={styles.infoHeading}>{info.heading}</h3>
+                <p style={styles.infoText}>{info.text}</p>
+              </div>
+            ))}
 
             {/* Social Media Icons */}
             <div style={styles.socialMediaSection}>
               <h3 style={styles.infoHeading}>Connect With Us</h3>
               <div style={styles.socialIcons}>
-                <a href="#" style={styles.socialIcon} aria-label="Facebook">
-                  <FaFacebook style={{ color: "#3b5998", fontSize: "24px" }} />
-                </a>
-                <a href="#" style={styles.socialIcon} aria-label="Twitter">
-                  <FaTwitter style={{ color: "#1da1f2", fontSize: "24px" }} />
-                </a>
-                <a href="#" style={styles.socialIcon} aria-label="Instagram">
-                  <FaInstagram style={{ color: "#e4405f", fontSize: "24px" }} />
-                </a>
-                <a href="#" style={styles.socialIcon} aria-label="LinkedIn">
-                  <FaLinkedin style={{ color: "#0077b5", fontSize: "24px" }} />
-                </a>
-                <a href="#" style={styles.socialIcon} aria-label="YouTube">
-                  <FaYoutube style={{ color: "#ff0000", fontSize: "24px" }} />
-                </a>
+                {socialMediaLinks.map((social, index) => (
+                  <a key={index} href={social.link} style={styles.socialIcon} aria-label={social.label}>
+                    {social.icon}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Right Column - Form */}
           <form style={styles.rightColumn}>
-            <input 
-              type="text" 
-              placeholder="Full Name" 
-              style={styles.inputField} 
-              required 
-            />
-            <input 
-              type="email" 
-              placeholder="Email" 
-              style={styles.inputField} 
-              required 
-            />
-            <input 
-              type="tel" 
-              placeholder="+91 Enter phone number" 
-              style={styles.inputField} 
-              required 
-            />
-            <textarea 
-              placeholder="Message" 
-              style={{ ...styles.inputField, ...styles.textarea }} 
-              required 
-            />
+            <input type="text" placeholder="Full Name" style={styles.inputField} required />
+            <input type="email" placeholder="Email" style={styles.inputField} required />
+            <input type="tel" placeholder="+91 Enter phone number" style={styles.inputField} required />
+            <textarea placeholder="Message" style={{ ...styles.inputField, ...styles.textarea }} required />
             <button type="submit" style={styles.submitButton}>
               Send Message
             </button>

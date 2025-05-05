@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 
+// Sustainability items data in an array of objects
+const sustainabilityItems = [
+    {
+        title: "Environmental",
+        description: "We prioritize environmental stewardship by utilizing renewable energy sources, implementing efficient manufacturing.",
+        image: "https://previews.123rf.com/images/grgroup/grgroup1611/grgroup161111928/105604798-half-body-man-with-formal-shirt-vector-illustration.jpg"
+    },
+    {
+        title: "Society",
+        description: "At Rayzon, we embody our core values of 'Reliable, Value-added, Delighted': ensuring stakeholder satisfaction and...",
+        image: "https://png.pngtree.com/png-clipart/20230405/original/pngtree-flat-illustration-half-body-png-image_9026829.png"
+    },
+    {
+        title: "Governance",
+        description: "Rayzon is dedicated to upholding consistent operational excellence while collaborating closely with our",
+        image: "https://previews.123rf.com/images/grgroup/grgroup1611/grgroup161111928/105604798-half-body-man-with-formal-shirt-vector-illustration.jpg"
+    }
+];
+
 const SustainabilityManagement = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
-
-    const sustainabilityItems = [
-        {
-            title: "Environmental",
-            description: "We prioritize environmental stewardship by utilizing renewable energy sources, implementing efficient manufacturing.",
-            image: "https://previews.123rf.com/images/grgroup/grgroup1611/grgroup161111928/105604798-half-body-man-with-formal-shirt-vector-illustration.jpg"
-        },
-        {
-            title: "Society",
-            description: "At Rayzon, we embody our core values of 'Reliable, Value-added, Delighted': ensuring stakeholder satisfaction and...",
-            image: "https://png.pngtree.com/png-clipart/20230405/original/pngtree-flat-illustration-half-body-png-image_9026829.png"
-        },
-        {
-            title: "Governance",
-            description: "Rayzon is dedicated to upholding consistent operational excellence while collaborating closely with our",
-            image: "https://previews.123rf.com/images/grgroup/grgroup1611/grgroup161111928/105604798-half-body-man-with-formal-shirt-vector-illustration.jpg"
-        }
-    ];
 
     return (
         <div style={styles.container}>

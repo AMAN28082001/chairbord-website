@@ -43,7 +43,7 @@ const Navbar = () => {
           </div>
 
           <ul className="nav-links desktop-nav">
-            {navLinks.map(link => (
+            {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
@@ -81,7 +81,7 @@ const Navbar = () => {
               />
             </div>
             <ul className="mobile-menu">
-              {navLinks.map(link => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}

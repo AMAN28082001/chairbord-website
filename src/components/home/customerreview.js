@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const newsItems = [
+const newsData = [
     {
         image: 'https://res.cloudinary.com/du0cxgoic/image/upload/v1714370225/ipl1_card.webp',
         title: 'RAYZON SOLAR X IPL 2025: HOW RENEWABLE ENERGY...',
@@ -53,7 +53,7 @@ const CustomerReview = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const totalSlides = Math.ceil(newsItems.length / itemsPerSlide);
+    const totalSlides = Math.ceil(newsData.length / itemsPerSlide);
 
     const goToPrev = () => {
         setCurrentIndex((prev) => (prev > 0 ? prev - 1 : 0));
@@ -64,7 +64,7 @@ const CustomerReview = () => {
     };
 
     const start = currentIndex * itemsPerSlide;
-    const currentItems = newsItems.slice(start, start + itemsPerSlide);
+    const currentItems = newsData.slice(start, start + itemsPerSlide);
 
     return (
         <div style={styles.container}>

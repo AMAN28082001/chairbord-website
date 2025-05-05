@@ -1,6 +1,15 @@
 import React from 'react';
 
 const Banner = () => {
+    // Data assigned in an object
+    const bannerData = [
+        {
+            videoUrl: "https://res.cloudinary.com/du0cxgoic/video/upload/v1745914494/WEBSITE_OPEN_VIDEO_kgnuiz.webm",
+            heading: "Welcome to Rayzon Solar",
+            subheading: "Powering a sustainable future"
+        }
+    ];
+
     return (
         <div style={styles.container}>
             <video
@@ -11,14 +20,14 @@ const Banner = () => {
                 style={styles.video}
             >
                 <source
-                    src="https://res.cloudinary.com/du0cxgoic/video/upload/v1745914494/WEBSITE_OPEN_VIDEO_kgnuiz.webm"
+                    src={bannerData[0].videoUrl}
                     type="video/webm"
                 />
                 Your browser does not support the video tag.
             </video>
             <div style={styles.overlayContent}>
-                <h1 style={styles.heading}>Welcome to Rayzon Solar</h1>
-                <p style={styles.subheading}>Powering a sustainable future</p>
+                <h1 style={styles.heading}>{bannerData[0].heading}</h1>
+                <p style={styles.subheading}>{bannerData[0].subheading}</p>
             </div>
         </div>
     );

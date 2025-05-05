@@ -1,5 +1,32 @@
 import React from 'react';
 
+// Data for the footer
+const footerData = {
+  logo: "https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp",
+  description: "Rayzon is committed to mainstreaming sustainable business practices across industries domains and residential landscapes through its tech-oriented solar panel manufacturing and supply. To add one more step to a greener future, we aim to extend our production to 8 GW by the end of 2025.",
+  products: [
+    "L'Ilios Topcon Modules",
+    "L'Ilios Bifacial Modules",
+    "L'Ilios Monofacial Modules",
+    "L'Ilios Black Modules",
+  ],
+  quickLinks: [
+    "About Us",
+    "Our Products",
+    "Blogs",
+    "Contact Us",
+    "Career",
+    "Apply For Distributor",
+  ],
+  socials: [
+    { platform: "linkedin", icon: "fab fa-linkedin" },
+    { platform: "instagram", icon: "fab fa-instagram" },
+    { platform: "facebook", icon: "fab fa-facebook" },
+    { platform: "twitter", icon: "fab fa-x-twitter" },
+    { platform: "youtube", icon: "fab fa-youtube" },
+  ],
+};
+
 const Footer = () => {
   return (
     <>
@@ -7,24 +34,17 @@ const Footer = () => {
         <div className="footer-container">
           {/* Logo & Description */}
           <div className="footer-column">
-            <img
-              src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745911560/chairbord_b8byxn.webp"
-              alt="Rayzon Solar"
-              className="footer-logo"
-            />
-            <p className="footer-text">
-              Rayzon is committed to mainstreaming sustainable business practices across industries domains and residential landscapes through its tech-oriented solar panel manufacturing and supply. To add one more step to a greener future, we aim to extend our production to 8 GW by the end of 2025.
-            </p>
+            <img src={footerData.logo} alt="Rayzon Solar" className="footer-logo" />
+            <p className="footer-text">{footerData.description}</p>
           </div>
 
           {/* Products */}
           <div className="footer-column">
             <h4 className="footer-heading">Our Products</h4>
             <ul className="footer-list">
-              <li>L'Ilios Topcon Modules</li>
-              <li>L'Ilios Bifacial Modules</li>
-              <li>L'Ilios Monofacial Modules</li>
-              <li>L'Ilios Black Modules</li>
+              {footerData.products.map((product, index) => (
+                <li key={index}>{product}</li>
+              ))}
             </ul>
           </div>
 
@@ -32,12 +52,9 @@ const Footer = () => {
           <div className="footer-column">
             <h4 className="footer-heading">Quick Link</h4>
             <ul className="footer-list">
-              <li>About Us</li>
-              <li>Our Products</li>
-              <li>Blogs</li>
-              <li>Contact Us</li>
-              <li>Career</li>
-              <li>Apply For Distributor</li>
+              {footerData.quickLinks.map((link, index) => (
+                <li key={index}>{link}</li>
+              ))}
             </ul>
           </div>
 
@@ -55,11 +72,9 @@ const Footer = () => {
         <div className="footer-bottom">
           <p className="footer-copy">&copy; 2025 Rayzon Solar. All Rights Reserved.</p>
           <div className="footer-socials">
-            <i className="fab fa-linkedin"></i>
-            <i className="fab fa-instagram"></i>
-            <i className="fab fa-facebook"></i>
-            <i className="fab fa-x-twitter"></i>
-            <i className="fab fa-youtube"></i>
+            {footerData.socials.map((social, index) => (
+              <i key={index} className={social.icon}></i>
+            ))}
           </div>
         </div>
       </footer>

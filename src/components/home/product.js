@@ -1,6 +1,19 @@
 import React from 'react';
 
 const Product = () => {
+  // Data for the core values and description
+  const coreValuesData = [
+    { title: 'TEAMWORK' },
+    { title: 'HONESTY' },
+    { title: 'INNOVATION' },
+    { title: 'QUALITY' },
+  ];
+
+  const cultureData = {
+    title: "Corporate Culture that Shapes our Footprint",
+    description: "As a leading manufacturer of PV module and smart energy solution, Rayzon delivers world class solar PV products, applications, and services to promote global sustainable development...",
+  };
+
   return (
     <>
       <div className="culture-container">
@@ -9,9 +22,9 @@ const Product = () => {
           <div className="core-values">
             <h2 className="core-title">CORE VALUES</h2>
             <div className="value-list">
-              {['TEAMWORK', 'HONESTY', 'INNOVATION', 'QUALITY'].map((value) => (
-                <div key={value} className="value-item">
-                  <h3 className="value-title">{value}</h3>
+              {coreValuesData.map((value) => (
+                <div key={value.title} className="value-item">
+                  <h3 className="value-title">{value.title}</h3>
                 </div>
               ))}
             </div>
@@ -19,10 +32,8 @@ const Product = () => {
 
           {/* Right side - Description */}
           <div className="culture-description">
-            <h2 className="culture-title">Corporate Culture that Shapes our Footprint</h2>
-            <p className="culture-text">
-              As a leading manufacturer of PV module and smart energy solution, Rayzon delivers world class solar PV products, applications, and services to promote global sustainable development...
-            </p>
+            <h2 className="culture-title">{cultureData.title}</h2>
+            <p className="culture-text">{cultureData.description}</p>
           </div>
         </div>
       </div>

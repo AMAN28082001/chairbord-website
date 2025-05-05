@@ -1,6 +1,13 @@
 import React from 'react';
 
 const WhyBanner = () => {
+    const bannerData = [
+        {
+            heading: "Welcome to Rayzon Solar",
+            subheading: "Powering a sustainable future"
+        }
+    ];
+
     return (
         <div style={styles.container}>
             <video
@@ -18,8 +25,12 @@ const WhyBanner = () => {
             </video>
             <div style={styles.overlay}>
                 <div style={styles.overlayContent}>
-                    <h1 style={styles.heading}>Welcome to Rayzon Solar</h1>
-                    <p style={styles.subheading}>Powering a sustainable future</p>
+                    {bannerData.map((data, index) => (
+                        <div key={index}>
+                            <h1 style={styles.heading}>{data.heading}</h1>
+                            <p style={styles.subheading}>{data.subheading}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

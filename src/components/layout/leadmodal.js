@@ -1,18 +1,51 @@
 import React, { useEffect, useState } from 'react';
 
 const LeadModal = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
+  // Form field data stored in an array of objects
+  const formFields = [
+    {
+      name: 'fullName',
+      label: 'Full Name',
+      type: 'text',
+      placeholder: 'Your full name',
+      value: '',
+    },
+    {
+      name: 'email',
+      label: 'Email Address',
+      type: 'email',
+      placeholder: 'your@email.com',
+      value: '',
+    },
+    {
+      name: 'phone',
+      label: 'Phone Number',
+      type: 'tel',
+      placeholder: '9876543210',
+      value: '',
+    },
+    {
+      name: 'message',
+      label: 'Message',
+      type: 'textarea',
+      placeholder: 'Your message...',
+      value: '',
+    },
+  ];
+
+  // State to hold form data
+  const [formData, setFormData] = useState(
+    formFields.reduce((acc, field) => {
+      acc[field.name] = field.value;
+      return acc;
+    }, {})
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -48,68 +81,43 @@ const LeadModal = ({ isOpen, onClose }) => {
   return (
     <div style={styles.overlay}>
       <div style={styles.modal}>
-        <button onClick={onClose} style={styles.closeBtn} aria-label="Close modal">×</button>
+        <button onClick={onClose} style={styles.closeBtn} aria-label="Close modal">
+          ×
+        </button>
         <h2 style={styles.heading}>Enquiry Form</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.formGroup}>
-            <label htmlFor="fullName" style={styles.label}>Full Name</label>
-            <input
-              id="fullName"
-              name="fullName"
-              type="text"
-              value={formData.fullName}
-              onChange={handleChange}
-              placeholder="Your full name"
-              style={styles.input}
-              required
-            />
-          </div>
-
-          <div style={styles.formGroup}>
-            <label htmlFor="email" style={styles.label}>Email Address</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="your@email.com"
-              style={styles.input}
-              required
-            />
-          </div>
-
-          <div style={styles.formGroup}>
-            <label htmlFor="phone" style={styles.label}>Phone Number</label>
-            <div style={styles.phoneWrapper}>
-              <span style={styles.prefix}>+91</span>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="9876543210"
-                style={{ ...styles.input, ...styles.phoneInput }}
-                required
-              />
+          {formFields.map((field) => (
+            <div key={field.name} style={styles.formGroup}>
+              <label htmlFor={field.name} style={styles.label}>
+                {field.label}
+              </label>
+              {field.type === 'textarea' ? (
+                <textarea
+                  id={field.name}
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  placeholder={field.placeholder}
+                  rows="4"
+                  style={{ ...styles.input, resize: 'vertical' }}
+                />
+              ) : (
+                <input
+                  id={field.name}
+                  name={field.name}
+                  type={field.type}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  placeholder={field.placeholder}
+                  style={styles.input}
+                  required
+                />
+              )}
             </div>
-          </div>
-
-          <div style={styles.formGroup}>
-            <label htmlFor="message" style={styles.label}>Message</label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Your message..."
-              rows="4"
-              style={{ ...styles.input, resize: 'vertical' }}
-            />
-          </div>
-
-          <button type="submit" style={styles.submitBtn}>Send Message</button>
+          ))}
+          <button type="submit" style={styles.submitBtn}>
+            Send Message
+          </button>
         </form>
       </div>
     </div>
@@ -126,7 +134,6 @@ const styles = {
     zIndex: 1000,
     padding: '20px',
     backgroundColor: 'rgba(0, 0, 0, 0.9)', // darker transparent black
-
   },
   modal: {
     backgroundColor: '#fff',
@@ -168,23 +175,6 @@ const styles = {
     fontSize: '14px',
     outline: 'none',
     transition: 'border 0.3s ease',
-  },
-  phoneWrapper: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  prefix: {
-    padding: '10px 12px',
-    backgroundColor: '#f1f1f1',
-    border: '1px solid #ccc',
-    borderRight: 'none',
-    borderRadius: '6px 0 0 6px',
-    fontSize: '14px',
-  },
-  phoneInput: {
-    borderRadius: '0 6px 6px 0',
-    flex: 1,
-    borderLeft: 'none',
   },
   submitBtn: {
     background: 'linear-gradient(90deg, #3674B5, #578FCA, #A1E3F9, #D1F8EF)',

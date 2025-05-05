@@ -1,5 +1,55 @@
 import React, { useEffect } from 'react';
 
+const buttonData = [
+    {
+        id: 'discover',
+        text: 'DISCOVER MORE',
+        style: {
+            backgroundColor: '#2a4365',
+            color: 'white',
+            border: 'none',
+            padding: '15px 40px',
+            fontSize: '16px',
+            fontWeight: '600',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            textTransform: 'uppercase',
+            transition: 'all 0.3s ease',
+            marginBottom: '20px',
+        },
+    },
+    {
+        id: 'question',
+        text: 'I have a question',
+        style: {
+            backgroundColor: 'transparent',
+            color: 'white',
+            border: '1px solid white',
+            padding: '10px 25px',
+            fontSize: '14px',
+            fontWeight: '500',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+        },
+    },
+    {
+        id: 'tell-me',
+        text: 'Tell me more',
+        style: {
+            backgroundColor: 'white',
+            color: '#2a4365',
+            border: '1px solid white',
+            padding: '10px 25px',
+            fontSize: '14px',
+            fontWeight: '500',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+        },
+    },
+];
+
 const Contact = () => {
     useEffect(() => {
         const responsiveCSS = `
@@ -53,11 +103,24 @@ const Contact = () => {
                     <p className="contact-subheading" style={styles.subheading}>Since We Design The Solar From The Beginning</p>
 
                     <div className="buttons-container" style={styles.buttonsContainer}>
-                        <button style={styles.discoverButton}>DISCOVER MORE</button>
-                        
+                        {buttonData.map((button) => (
+                            <button
+                                key={button.id}
+                                style={button.style}
+                            >
+                                {button.text}
+                            </button>
+                        ))}
+
                         <div className="inquiry-buttons" style={styles.inquiryButtons}>
-                            <button style={styles.inquiryButton}>I have a question</button>
-                            <button style={styles.tellMeButton}>Tell me more</button>
+                            {buttonData.slice(1).map((button) => (
+                                <button
+                                    key={button.id}
+                                    style={button.style}
+                                >
+                                    {button.text}
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -119,46 +182,11 @@ const styles = {
         alignItems: 'center',
         gap: '25px',
     },
-    discoverButton: {
-        backgroundColor: '#2a4365',
-        color: 'white',
-        border: 'none',
-        padding: '15px 40px',
-        fontSize: '16px',
-        fontWeight: '600',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        textTransform: 'uppercase',
-        transition: 'all 0.3s ease',
-        marginBottom: '20px',
-    },
     inquiryButtons: {
         display: 'flex',
         gap: '15px',
         justifyContent: 'center',
         width: '100%',
-    },
-    inquiryButton: {
-        backgroundColor: 'transparent',
-        color: 'white',
-        border: '1px solid white',
-        padding: '10px 25px',
-        fontSize: '14px',
-        fontWeight: '500',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        transition: 'all 0.3s ease',
-    },
-    tellMeButton: {
-        backgroundColor: 'white',
-        color: '#2a4365',
-        border: '1px solid white',
-        padding: '10px 25px',
-        fontSize: '14px',
-        fontWeight: '500',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        transition: 'all 0.3s ease',
     },
 };
 

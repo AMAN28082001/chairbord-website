@@ -14,8 +14,56 @@ const FAQSection = () => {
       id: 2,
       question: "How do solar panels generate electricity?",
       answer:
-        "Solar panels generate electricity through photovoltaic cells that absorb sunlight and convert it into electrical energy using the photovoltaic effect. These cells are typically made of semiconductor materials like silicon.",
+        "Solar panels are intricate systems composed of photovoltaic cells that harness sunlight, converting it into usable electricity. Rayzon Solar stands out in this field, utilizing cutting-edge technology and innovative engineering to maximize energy conversion efficiency, ensuring optimal performance and sustainability.",
     },
+    {
+        id: 3,
+        question: "What is the lifespan of solar panels?",
+        answer:
+          "A testament to their durability and reliability, Rayzon Solar panels boast an impressive lifespan ranging from 25 to 30 years. Rigorous testing and quality control measures ensure that these panels withstand the test of time, providing consistent performance and peace of mind to consumers.",
+      },
+      {
+        id: 4,
+        question: "What is the best grade or quality of solar panels?",
+        answer:
+          "The best grade of solar panels depends on various factors such as efficiency, durability, and manufacturer reputation. Rayzon Solar stands out with premium-grade panels known for their high efficiency, durability, and advanced technology, ensuring optimal performance and long-term reliability.",
+      },
+      {
+        id: 5,
+        question: "What is the best quality solar panel?",
+        answer:
+          "The best quality solar panels, such as those by Rayzon Solar, exhibit superior efficiency, durability, and reliability. Rayzon Solar's panels are renowned for their advanced technology and high performance, setting the industry standard.",
+      },
+      {
+        id: 6,
+        question: "What are solar panels made of?",
+        answer:
+          "Comprising silicon wafers, solar panels are the epitome of modern engineering. Rayzon Solar sets the benchmark by utilizing only the highest-quality silicon materials, meticulously selected to ensure durability, longevity, and unparalleled performance, setting a standard for the industry.",
+      },
+      {
+        id: 7,
+        question: "What determines the quality of solar panels?",
+        answer:
+          "Several factors determine the quality of solar panels, including efficiency, durability, materials used, and manufacturer reputation. Rayzon Solar prioritizes these factors, offering panels known for their reliability, efficiency, and advanced technology.",
+      },
+      {
+        id: 8,
+        question: "How do I know if a solar panel is of good quality?",
+        answer:
+          "You can determine if a solar panel is of good quality by assessing factors like efficiency, durability, manufacturer reputation, and warranty terms. Rayzon Solar's panels stand out with their high efficiency, durability, and renowned manufacturer reputation.",
+      },
+      {
+        id: 9,
+        question: "What is the best type of PV panel? ",
+        answer:
+          "The best type of PV panel depends on various factors such as efficiency, cost, and specific application requirements. Rayzon Solar offers a range of PV panels tailored to different needs, each known for its high efficiency and performance.",
+      },
+      {
+        id: 10,
+        question: "Are all solar panels the same quality?",
+        answer:
+          "Not all solar panels are of the same quality. Factors like efficiency, durability, and manufacturer reputation vary. Rayzon Solar stands out for providing high-quality panels known for their advanced technology, efficiency, and reliability.",
+      },
   ];
 
   const toggleAnswer = (id) => {

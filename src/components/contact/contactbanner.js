@@ -1,6 +1,15 @@
 import React from 'react';
 
 const ContactBanner = () => {
+  // Array of objects containing banner content data
+  const bannerData = [
+    {
+      imageSrc: "https://png.pngtree.com/png-vector/20231127/ourmid/pngtree-web-contact-us-icons-on-blue-tags-online-png-image_10709663.png",
+      title: "We’re Here to Help",
+      subtitle: "Have questions or need a custom solution? Reach out and let’s discuss your project today.",
+    },
+  ];
+
   return (
     <div style={styles.container}>
       <video
@@ -18,15 +27,17 @@ const ContactBanner = () => {
       </video>
 
       <div style={styles.overlay}>
-        <div style={styles.overlayContent}>
-          <img
-            src="https://png.pngtree.com/png-vector/20231127/ourmid/pngtree-web-contact-us-icons-on-blue-tags-online-png-image_10709663.png"
-            alt="Contact"
-            style={styles.image}
-          />
-          <h1 style={styles.title}>We’re Here to Help</h1>
-          <p style={styles.subtitle}>Have questions or need a custom solution? Reach out and let’s discuss your project today.</p>
-        </div>
+        {bannerData.map((item, index) => (
+          <div key={index} style={styles.overlayContent}>
+            <img
+              src={item.imageSrc}
+              alt="Contact"
+              style={styles.image}
+            />
+            <h1 style={styles.title}>{item.title}</h1>
+            <p style={styles.subtitle}>{item.subtitle}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -68,10 +79,8 @@ const styles = {
   image: {
     width: '250px',
     height: '200px',
-    // borderRadius: '50%',
     marginBottom: '20px',
     objectFit: 'cover',
-    // border: '3px solid #fff',
   },
   title: {
     fontSize: '36px',

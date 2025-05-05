@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const milestones = [
+// Milestone data in an array of objects
+const milestonesData = [
   { year: '2030', value: null, desc: 'Successful Journey Ahead', icons: ['map'] },
   { year: '2017', value: null, desc: 'Rayzon Established', icons: ['map-pin', 'star'] },
   { year: '2022', value: null, desc: 'International Expansion', icons: ['star'] },
@@ -11,6 +12,7 @@ const SolarMilestoneComponent = () => {
   const carouselRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Resize handler to detect mobile screen
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize();
@@ -18,6 +20,7 @@ const SolarMilestoneComponent = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Carousel auto-scroll logic
   useEffect(() => {
     const carousel = carouselRef.current;
     let scrollAmount = 1;
@@ -36,7 +39,8 @@ const SolarMilestoneComponent = () => {
     return () => clearInterval(scrollInterval);
   }, []);
 
-  const loopedMilestones = [...milestones, ...milestones];
+  // Duplicating milestones data to create a looped effect
+  const loopedMilestones = [...milestonesData, ...milestonesData];
 
   return (
     <div

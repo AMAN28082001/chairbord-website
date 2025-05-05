@@ -1,6 +1,18 @@
 import React from 'react';
 
 const Solutions = () => {
+  // Data for the video and text content
+  const videoData = {
+    videoUrl: "https://res.cloudinary.com/du0cxgoic/video/upload/v1745918504/mid_header_1_kudray.webm",
+    heading: "WIDE RANGE OF SOLAR SOLUTION",
+    subheading: "Since We Design The Solar From The Beginning",
+    buttons: [
+      { text: "DISCOVER MORE", className: "discover-button" },
+      { text: "I have a question", className: "inquiry-button" },
+      { text: "Tell me more", className: "tellme-button" }
+    ]
+  };
+
   return (
     <>
       <div className="video-container">
@@ -12,22 +24,23 @@ const Solutions = () => {
           playsInline
           className="background-video"
         >
-          <source src="https://res.cloudinary.com/du0cxgoic/video/upload/v1745918504/mid_header_1_kudray.webm" type="video/webm" />
+          <source src={videoData.videoUrl} type="video/webm" />
           Your browser does not support the video tag.
         </video>
 
         {/* Content Overlay */}
         <div className="content-overlay">
           <div className="video-content">
-            <h2 className="heading">WIDE RANGE OF SOLAR SOLUTION</h2>
-            <p className="subheading">Since We Design The Solar From The Beginning</p>
+            <h2 className="heading">{videoData.heading}</h2>
+            <p className="subheading">{videoData.subheading}</p>
 
             <div className="buttons-container">
-              <button className="discover-button">DISCOVER MORE</button>
+              <button className={videoData.buttons[0].className}>{videoData.buttons[0].text}</button>
 
               <div className="inquiry-buttons">
-                <button className="inquiry-button">I have a question</button>
-                <button className="tellme-button">Tell me more</button>
+                {videoData.buttons.slice(1).map((button, index) => (
+                  <button key={index} className={button.className}>{button.text}</button>
+                ))}
               </div>
             </div>
           </div>

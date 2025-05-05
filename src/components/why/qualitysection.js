@@ -1,6 +1,21 @@
 import React from "react";
 
 const QualitySection = () => {
+  const qualityData = [
+    {
+      title: "100%",
+      subtitle: "Visual & EL Testing",
+    },
+    {
+      title: "Tuv Ims",
+      subtitle: "Certified",
+    },
+    {
+      title: "Stringent",
+      subtitle: "Hast Testing",
+    },
+  ];
+
   return (
     <div style={styles.wrapper}>
       <div style={styles.content}>
@@ -19,18 +34,12 @@ const QualitySection = () => {
         <h2 style={styles.qualityTitle}>Quality</h2>
 
         <div style={styles.cardGrid}>
-          <div style={styles.card}>
-            <div style={styles.cardTitle}>100%</div>
-            <div style={styles.cardSubtitle}>Visual & EL Testing</div>
-          </div>
-          <div style={styles.card}>
-            <div style={styles.cardTitle}>Tuv Ims</div>
-            <div style={styles.cardSubtitle}>Certified</div>
-          </div>
-          <div style={styles.card}>
-            <div style={styles.cardTitle}>Stringent</div>
-            <div style={styles.cardSubtitle}>Hast Testing</div>
-          </div>
+          {qualityData.map((item, index) => (
+            <div key={index} style={styles.card}>
+              <div style={styles.cardTitle}>{item.title}</div>
+              <div style={styles.cardSubtitle}>{item.subtitle}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

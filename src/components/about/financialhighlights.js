@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-const FinancialHighlights = () => {
-  const financialItems = [
-    "Strong Financial Support",
-    "Steady Revenue Growth",
-    "Low Debt Ratio",
-    "Sound Bankability",
-    "Effective Supply Chain Integration",
-  ];
+const financialItems = [
+  { id: 1, label: "Strong Financial Support" },
+  { id: 2, label: "Steady Revenue Growth" },
+  { id: 3, label: "Low Debt Ratio" },
+  { id: 4, label: "Sound Bankability" },
+  { id: 5, label: "Effective Supply Chain Integration" }
+];
 
+const FinancialHighlights = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -37,7 +37,7 @@ const FinancialHighlights = () => {
       }}>
         {financialItems.map((item, index) => (
           <div 
-            key={index}
+            key={item.id}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             style={{
@@ -67,7 +67,7 @@ const FinancialHighlights = () => {
               color: '#2c3e50',
               lineHeight: '1.4',
             }}>
-              {item}
+              {item.label}
             </p>
           </div>
         ))}

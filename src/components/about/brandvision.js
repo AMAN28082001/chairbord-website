@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
+const visionData = [
+  {
+    id: 1,
+    brandLabel: "BRAND",
+    title: "VISION & STRATEGY",
+    vision: "To make our future more vibrant and sustainable by using green energy to save the earth.",
+    strategy:
+      "We are also committed to maintain our leadership position in the manufacture of solar products, delivering higher efficiency to the global photovoltaic industry.",
+    goal: "To achieve 8 GW production capacity by 2025 to serve green energy demand internationally.",
+    videoUrl:
+      "https://res.cloudinary.com/du0cxgoic/video/upload/v1745914494/WEBSITE_OPEN_VIDEO_kgnuiz.webm",
+  },
+];
+
 const BrandVision = () => {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -7,9 +21,9 @@ const BrandVision = () => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    handleResize(); // set initially
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const styles = getStyles(isMobile);
@@ -17,41 +31,29 @@ const BrandVision = () => {
   return (
     <div style={styles.container}>
       <div style={styles.content}>
-        <div style={styles.textSection}>
-          <div style={styles.header}>
-            <span style={styles.brandText}>BRAND</span>
-            <h2 style={styles.title}>VISION & STRATEGY</h2>
-          </div>
+        {visionData.map((item) => (
+          <React.Fragment key={item.id}>
+            <div style={styles.textSection}>
+              <div style={styles.header}>
+                <span style={styles.brandText}>{item.brandLabel}</span>
+                <h2 style={styles.title}>{item.title}</h2>
+              </div>
 
-          <div style={styles.strategyContent}>
-            <p style={styles.visionText}>
-              To make our future more vibrant and sustainable by using green energy to save the earth.
-            </p>
-            <p style={styles.strategyText}>
-              We are also committed to maintain our leadership position in the manufacture of solar products,
-              delivering higher efficiency to the global photovoltaic industry.
-            </p>
-            <p style={styles.goalText}>
-              To achieve 8 GW production capacity by 2025 to serve green energy demand internationally.
-            </p>
-          </div>
-        </div>
+              <div style={styles.strategyContent}>
+                <p style={styles.visionText}>{item.vision}</p>
+                <p style={styles.strategyText}>{item.strategy}</p>
+                <p style={styles.goalText}>{item.goal}</p>
+              </div>
+            </div>
 
-        <div style={styles.videoSection}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={styles.video}
-          >
-            <source
-              src="https://res.cloudinary.com/du0cxgoic/video/upload/v1745914494/WEBSITE_OPEN_VIDEO_kgnuiz.webm"
-              type="video/webm"
-            />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+            <div style={styles.videoSection}>
+              <video autoPlay loop muted playsInline style={styles.video}>
+                <source src={item.videoUrl} type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );

@@ -10,6 +10,20 @@ const About = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Data for content and image
+    const aboutData = [
+        {
+            heading: "WE'RE\nRAYZON SOLAR",
+            paragraph1: "Rayzon Solar, India's top solar panel manufacturing company, has emerged as a leader in the industry with its innovative solutions and widespread presence PAN India. With a strong foothold in the United States and Europe, the company has garnered the trust of more than 1000 satisfied customers worldwide.",
+            paragraph2: "Rayzon Solar's production capacity has reached an impressive 6 GW with the latest TOPCon technology. This achievement is made possible because of our visionary founder's continuous drive for innovation and excellence."
+        }
+    ];
+
+    const imageData = {
+        src: "https://res.cloudinary.com/du0cxgoic/image/upload/v1745917058/SOLAR_GIF_vuskmd.gif",
+        alt: "Solar Panel Technology",
+    };
+
     return (
         <div style={{ 
             ...styles.container, 
@@ -18,27 +32,31 @@ const About = () => {
         }}>
             {/* Left side content */}
             <div style={styles.leftSide}>
-                <h2 style={{
-                    ...styles.heading,
-                    fontSize: isMobile ? '32px' : '48px',
-                    textAlign: isMobile ? 'center' : 'left'
-                }}>
-                    WE'RE<br />RAYZON SOLAR
-                </h2>
-                <p style={{ 
-                    ...styles.paragraph, 
-                    fontSize: isMobile ? '16px' : '18px', 
-                    textAlign: isMobile ? 'center' : 'left' 
-                }}>
-                    Rayzon Solar, India's top solar panel manufacturing company, has emerged as a leader in the industry with its innovative solutions and widespread presence PAN India. With a strong foothold in the United States and Europe, the company has garnered the trust of more than 1000 satisfied customers worldwide.
-                </p>
-                <p style={{ 
-                    ...styles.paragraph, 
-                    fontSize: isMobile ? '16px' : '18px', 
-                    textAlign: isMobile ? 'center' : 'left' 
-                }}>
-                    Rayzon Solar's production capacity has reached an impressive 6 GW with the latest TOPCon technology. This achievement is made possible because of our visionary founder's continuous drive for innovation and excellence.
-                </p>
+                {aboutData.map((data, index) => (
+                    <div key={index}>
+                        <h2 style={{
+                            ...styles.heading,
+                            fontSize: isMobile ? '32px' : '48px',
+                            textAlign: isMobile ? 'center' : 'left'
+                        }}>
+                            {data.heading}
+                        </h2>
+                        <p style={{ 
+                            ...styles.paragraph, 
+                            fontSize: isMobile ? '16px' : '18px', 
+                            textAlign: isMobile ? 'center' : 'left' 
+                        }}>
+                            {data.paragraph1}
+                        </p>
+                        <p style={{ 
+                            ...styles.paragraph, 
+                            fontSize: isMobile ? '16px' : '18px', 
+                            textAlign: isMobile ? 'center' : 'left' 
+                        }}>
+                            {data.paragraph2}
+                        </p>
+                    </div>
+                ))}
             </div>
 
             {/* Right side image/GIF */}
@@ -47,8 +65,8 @@ const About = () => {
                 justifyContent: isMobile ? 'center' : 'flex-end' 
             }}>
                 <img
-                    src="https://res.cloudinary.com/du0cxgoic/image/upload/v1745917058/SOLAR_GIF_vuskmd.gif"
-                    alt="Solar Panel Technology"
+                    src={imageData.src}
+                    alt={imageData.alt}
                     style={{ 
                         ...styles.image, 
                         width: isMobile ? '100%' : '90%', 
@@ -66,24 +84,22 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: '##ffffff',
+        backgroundColor: '#ffffff',
         flexWrap: 'wrap',
-        maxWidth: '1200px', // Add this
-        margin: '0 auto',   // Center the container
-      },
-      leftSide: {
+        maxWidth: '1200px',
+        margin: '0 auto',
+    },
+    leftSide: {
         flex: 1,
-        // padding: '20px',
         color: '#2d3748',
         minWidth: '300px',
-      },
-      rightSide: {
+    },
+    rightSide: {
         flex: 1,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center', // More balanced alignment
-        // padding: '20px',
-      },
+        justifyContent: 'center',
+    },
     heading: {
         fontWeight: 'bold',
         color: '#2a4365',

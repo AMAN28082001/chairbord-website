@@ -1,5 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
+const leaders = [
+  {
+    name: 'CHIRAG NAKRANI - Visionary Leader',
+    title: 'Founder & Managing Director',
+    image: 'https://png.pngtree.com/png-vector/20240205/ourmid/pngtree-cartoon-business-man-png-image_11622855.png',
+    alt: 'Chirag Nakrani - Founder & Managing Director',
+    paragraphs: [
+      `He is a dynamic and visionary leader who has played a pivotal role in the success and growth of Rayzon Solar. With over eight years of extensive experience in various facets of the solar industry—including tactical planning, sales, international business development, and marketing—Mr. Chirag Nakrani has demonstrated a profound understanding of the market and an ability to drive the company's progress.`,
+      `Under his leadership, Rayzon Solar has emerged as a highly regarded solar manufacturer on an international scale. By effectively leading the sales and operations teams, he has positioned the company as a dominant force in the solar market. His expertise and strategic vision have been instrumental in expanding the company's reach and achieving remarkable milestones.`,
+      `Mr. Nakrani's innovative thinking and unwavering commitment to the company's mission have set Rayzon Solar apart from its competitors. His dedication to sustainability and clean energy has not only solidified the company's reputation for excellence and dependability but has also contributed to the advancement of the renewable energy sector as a whole.`,
+    ],
+  },
+  // Add more leader objects here as needed
+];
+
 const LeadershipProfile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -14,30 +29,26 @@ const LeadershipProfile = () => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.profileContainer}>
-        <div style={styles.imageContainer}>
-          <img 
-            src="https://png.pngtree.com/png-vector/20240205/ourmid/pngtree-cartoon-business-man-png-image_11622855.png" 
-            alt="Chiraq Nakrani - Founder & Managing Director"
-            style={styles.profileImage}
-          />
-        </div>
-        <div style={styles.contentContainer}>
-          <h1 style={styles.name}>CHIRAG NAKRANI - Visionary Leader</h1>
-          <h2 style={styles.title}>Founder & Managing Director</h2>
-          <div style={styles.description}>
-            <p style={styles.paragraph}>
-            He is a dynamic and visionary leader who has played a pivotal role in the success and growth of Rayzon Solar. With over eight years of extensive experience in various facets of the solar industry, including Tactical Planning, Sales, International Business Development and Marketing, Mr. Chiraq Nakani has demonstrated his profound understanding of the market and his ability to drive the company's progress.
-            </p>
-            <p style={styles.paragraph}>
-            Under his leadership, Rayzon Solar has emerged as a highly regarded solar manufacturer on an international scale. By effectively leading the sales and operations teams, he has positioned the company as a dominant force in the solar market. His expertise and strategic vision have been instrumental in expanding the company's reach and achieving remarkable milestones.
-            </p>
-            <p style={styles.paragraph}>
-            Mr.Nakani's innovative thinking and unwavering commitment to the company's mission have set Rayzon Solar apart from its competitors. His dedication to sustainability and clean energy has not only solidified the company's reputation for excellence and dependability but has also contributed to the advancement of the renewable energy sector as a whole.
-            </p>
+      {leaders.map((leader, idx) => (
+        <div style={styles.profileContainer} key={idx}>
+          <div style={styles.imageContainer}>
+            <img 
+              src={leader.image} 
+              alt={leader.alt} 
+              style={styles.profileImage}
+            />
+          </div>
+          <div style={styles.contentContainer}>
+            <h1 style={styles.name}>{leader.name}</h1>
+            <h2 style={styles.title}>{leader.title}</h2>
+            <div style={styles.description}>
+              {leader.paragraphs.map((text, i) => (
+                <p style={styles.paragraph} key={i}>{text}</p>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
@@ -52,12 +63,11 @@ const getStyles = (isMobile) => ({
   },
   profileContainer: {
     maxWidth: '1200px',
-    margin: '0 auto',
+    margin: '0 auto 60px auto',
     display: 'flex',
     flexDirection: isMobile ? 'column' : 'row',
     alignItems: 'flex-start',
     gap: isMobile ? '40px' : '60px',
-    overflowX: 'hidden',
     boxSizing: 'border-box',
   },
   imageContainer: {
@@ -85,14 +95,14 @@ const getStyles = (isMobile) => ({
     color: '#2c3e50',
     margin: '0 0 10px 0',
     lineHeight: '1.3',
-    wordWrap: 'break-word',
+    overflowWrap: 'break-word',
   },
   title: {
     fontSize: 'clamp(18px, 2vw, 24px)',
     fontWeight: '600',
     color: '#555',
     margin: '0 0 30px 0',
-    wordWrap: 'break-word',
+    overflowWrap: 'break-word',
   },
   description: {
     marginBottom: '30px',
@@ -102,7 +112,7 @@ const getStyles = (isMobile) => ({
     lineHeight: '1.8',
     color: '#333',
     margin: '0 0 20px 0',
-    wordWrap: 'break-word',
+    overflowWrap: 'break-word',
   },
 });
 

@@ -9,6 +9,7 @@ import Download from "./pages/download";
 import LeadModal from "./components/layout/leadmodal";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import "./App.css";
+import { FaXTwitter } from "react-icons/fa6";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,16 +77,16 @@ function App() {
 
     { /* Sticky Social Media Icons */}
       <div className="social-icons">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: "#4267B2" }}>
+        <a href="https://www.facebook.com/TheChairbord" target="_blank" rel="noopener noreferrer" style={{ color: "#4267B2" }}>
           <FaFacebookF />
         </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style={{ color: "#1DA1F2" }}>
-          <FaTwitter />
+        <a href="https://x.com/i/flow/login?redirect_after_login=%2FTheChairbord" target="_blank" rel="noopener noreferrer" style={{ color: "#1DA1F2" }}>
+          <FaXTwitter />
         </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: "#0077B5" }}>
+        <a href="https://www.linkedin.com/company/chairbord/posts/?feedView=all" target="_blank" rel="noopener noreferrer" style={{ color: "#0077B5" }}>
           <FaLinkedinIn />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: "#E1306C" }}>
+        <a href="https://www.instagram.com/chairbord.official/" target="_blank" rel="noopener noreferrer" style={{ color: "#E1306C" }}>
           <FaInstagram />
         </a>
       </div>
