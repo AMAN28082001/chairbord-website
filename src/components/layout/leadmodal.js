@@ -187,7 +187,7 @@ const styles = {
     borderLeft: 'none',
   },
   submitBtn: {
-    background: 'linear-gradient(to right, #4CAF50, #45A049)',
+    background: 'linear-gradient(90deg, #3674B5, #578FCA, #A1E3F9, #D1F8EF)',
     color: '#fff',
     padding: '12px',
     border: 'none',

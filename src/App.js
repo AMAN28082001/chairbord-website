@@ -28,23 +28,23 @@ function App() {
       if (!hasOpenedOnce.current) {
         openModal();
       }
-    }, 5000);
+    }, 15000);
 
-    // Scroll event listener
-    const handleScroll = () => {
-      if (!hasOpenedOnce.current && !scrollTriggered.current) {
-        scrollTriggered.current = true;
-        openModal();
-        clearTimeout(initialTimeout.current); // prevent double open
-      }
-    };
+    // // Scroll event listener
+    // const handleScroll = () => {
+    //   if (!hasOpenedOnce.current && !scrollTriggered.current) {
+    //     scrollTriggered.current = true;
+    //     openModal();
+    //     clearTimeout(initialTimeout.current); // prevent double open
+    //   }
+    // };
 
-    window.addEventListener("scroll", handleScroll);
+   // window.addEventListener("scroll", handleScroll);
 
     return () => {
       clearTimeout(initialTimeout.current);
       clearTimeout(reopenTimeout.current);
-      window.removeEventListener("scroll", handleScroll);
+    //  window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -58,7 +58,7 @@ function App() {
 
     // Schedule modal to reopen in 15 seconds
     reopenTimeout.current = setTimeout(() => {
-      setIsModalOpen(true);
+      setIsModalOpen(false);
     }, 15000);
   };
 

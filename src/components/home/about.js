@@ -66,21 +66,24 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: '#f7fafc',
+        backgroundColor: '##ffffff',
         flexWrap: 'wrap',
-    },
-    leftSide: {
+        maxWidth: '1200px', // Add this
+        margin: '0 auto',   // Center the container
+      },
+      leftSide: {
         flex: 1,
-        padding: '20px',
+        // padding: '20px',
         color: '#2d3748',
-        maxWidth: '600px',
-    },
-    rightSide: {
+        minWidth: '300px',
+      },
+      rightSide: {
         flex: 1,
         display: 'flex',
         alignItems: 'center',
-        padding: '20px',
-    },
+        justifyContent: 'center', // More balanced alignment
+        // padding: '20px',
+      },
     heading: {
         fontWeight: 'bold',
         color: '#2a4365',
