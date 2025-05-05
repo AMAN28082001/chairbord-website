@@ -7,7 +7,7 @@ import Product from "./pages/product";
 import Why from "./pages/why";
 import Download from "./pages/download";
 import LeadModal from "./components/layout/leadmodal";
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import "./App.css";
 import { FaXTwitter } from "react-icons/fa6";
 
