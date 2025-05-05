@@ -14,7 +14,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const hasOpenedOnce = useRef(false);
   const reopenTimeout = useRef(null);
-  const scrollTriggered = useRef(false);
+  // const scrollTriggered = useRef(false);
   const initialTimeout = useRef(null);
 
   // Disable background scroll when modal is open
