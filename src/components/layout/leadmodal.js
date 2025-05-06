@@ -1,59 +1,48 @@
 import React, { useEffect, useState } from 'react';
 
-const LeadModal = ({ isOpen, onClose }) => {
-  // Form field data stored in an array of objects
+const LeadModal = ({ isOpen, onClose, visitData = {}, onSubmit }) => {
   const formFields = [
-    {
-      name: 'fullName',
-      label: 'Full Name',
-      type: 'text',
-      placeholder: 'Your full name',
-      value: '',
-    },
-    {
-      name: 'email',
-      label: 'Email Address',
-      type: 'email',
-      placeholder: 'your@email.com',
-      value: '',
-    },
-    {
-      name: 'phone',
-      label: 'Phone Number',
-      type: 'tel',
-      placeholder: '9876543210',
-      value: '',
-    },
-    {
-      name: 'message',
-      label: 'Message',
-      type: 'textarea',
-      placeholder: 'Your message...',
-      value: '',
-    },
+    { name: 'fullName', label: 'Full Name', type: 'text', placeholder: 'Your full name' },
+    { name: 'email', label: 'Email Address', type: 'email', placeholder: 'your@email.com' },
+    { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '9876543210' },
+    { name: 'message', label: 'Message', type: 'textarea', placeholder: 'Your message...' },
   ];
 
-  // State to hold form data
-  const [formData, setFormData] = useState(
+  const [formData, setFormData] = useState(() =>
     formFields.reduce((acc, field) => {
-      acc[field.name] = field.value;
+      acc[field.name] = '';
       return acc;
     }, {})
   );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    onClose(); // Close modal after submission
+
+    const combinedData = {
+      ...formData,
+      ...visitData,
+    };
+
+    console.log('✅ Form submitted with data:', combinedData);
+
+    // TODO: send `combinedData` to API
+    if (onSubmit) onSubmit(formData); // Call parent handler with form data
+
+    onClose();
   };
+
+  useEffect(() => {
+    if (!visitData || Object.keys(visitData).length === 0) {
+      console.warn('⚠️ visitData is empty or undefined');
+    } else {
+      console.log('ℹ️ Received visitData in modal:', visitData);
+    }
+  }, [visitData]);
 
   useEffect(() => {
     if (isOpen) {
@@ -81,16 +70,12 @@ const LeadModal = ({ isOpen, onClose }) => {
   return (
     <div style={styles.overlay}>
       <div style={styles.modal}>
-        <button onClick={onClose} style={styles.closeBtn} aria-label="Close modal">
-          ×
-        </button>
+        <button onClick={onClose} style={styles.closeBtn} aria-label="Close modal">×</button>
         <h2 style={styles.heading}>Enquiry Form</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
           {formFields.map((field) => (
             <div key={field.name} style={styles.formGroup}>
-              <label htmlFor={field.name} style={styles.label}>
-                {field.label}
-              </label>
+              <label htmlFor={field.name} style={styles.label}>{field.label}</label>
               {field.type === 'textarea' ? (
                 <textarea
                   id={field.name}
@@ -115,10 +100,13 @@ const LeadModal = ({ isOpen, onClose }) => {
               )}
             </div>
           ))}
-          <button type="submit" style={styles.submitBtn}>
-            Send Message
-          </button>
+          <button type="submit" style={styles.submitBtn}>Send Message</button>
         </form>
+
+        {/* Optional Debug Info */}
+        {/* <pre style={{ fontSize: '12px', marginTop: '20px', color: '#555' }}>
+          Debug visitData: {JSON.stringify(visitData, null, 2)}
+        </pre> */}
       </div>
     </div>
   );
@@ -133,7 +121,7 @@ const styles = {
     alignItems: 'center',
     zIndex: 1000,
     padding: '20px',
-    backgroundColor: 'rgba(0, 0, 0, 0.9)', // darker transparent black
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
   },
   modal: {
     backgroundColor: '#fff',
@@ -196,7 +184,7 @@ const styles = {
     fontSize: '24px',
     color: '#999',
     cursor: 'pointer',
-  }
+  },
 };
 
 export default LeadModal;

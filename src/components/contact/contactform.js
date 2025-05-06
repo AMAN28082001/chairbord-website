@@ -1,9 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { FaThreads, FaXTwitter } from "react-icons/fa6";
+import useTrackUserSource from "../../hooks/useTrackUserSource";
 
 const ContactForm = () => {
-  // Contact Info
+  const visitData = useTrackUserSource();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const submission = {
+      ...formData,
+      tracking: visitData,
+    };
+
+    console.log("Form submitted:", submission);
+
+    // Optional: reset form
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+  };
+
   const contactInfo = [
     {
       heading: "Head Office",
@@ -19,7 +52,6 @@ const ContactForm = () => {
     },
   ];
 
-  // Social Media Links and Icons
   const socialMediaLinks = [
     {
       icon: <FaFacebook style={{ color: "#3b5998", fontSize: "24px" }} />,
@@ -60,7 +92,6 @@ const ContactForm = () => {
 
       <div style={styles.card}>
         <div style={styles.flexContainer}>
-          {/* Left Column - Contact Info */}
           <div style={styles.leftColumn}>
             {contactInfo.map((info, index) => (
               <div key={index} style={styles.infoSection}>
@@ -69,7 +100,6 @@ const ContactForm = () => {
               </div>
             ))}
 
-            {/* Social Media Icons */}
             <div style={styles.socialMediaSection}>
               <h3 style={styles.infoHeading}>Connect With Us</h3>
               <div style={styles.socialIcons}>
@@ -82,12 +112,42 @@ const ContactForm = () => {
             </div>
           </div>
 
-          {/* Right Column - Form */}
-          <form style={styles.rightColumn}>
-            <input type="text" placeholder="Full Name" style={styles.inputField} required />
-            <input type="email" placeholder="Email" style={styles.inputField} required />
-            <input type="tel" placeholder="+91 Enter phone number" style={styles.inputField} required />
-            <textarea placeholder="Message" style={{ ...styles.inputField, ...styles.textarea }} required />
+          <form style={styles.rightColumn} onSubmit={handleSubmit}>
+            <input
+              name="name"
+              type="text"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={handleChange}
+              style={styles.inputField}
+              required
+            />
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              style={styles.inputField}
+              required
+            />
+            <input
+              name="phone"
+              type="tel"
+              placeholder="Enter phone number"
+              value={formData.phone}
+              onChange={handleChange}
+              style={styles.inputField}
+              required
+            />
+            <textarea
+              name="message"
+              placeholder="Message"
+              value={formData.message}
+              onChange={handleChange}
+              style={{ ...styles.inputField, ...styles.textarea }}
+              required
+            />
             <button type="submit" style={styles.submitButton}>
               Send Message
             </button>
@@ -166,9 +226,6 @@ const styles = {
   socialIcon: {
     display: "inline-block",
     transition: "transform 0.3s ease",
-    ":hover": {
-      transform: "scale(1.1)",
-    },
   },
   inputField: {
     padding: "12px 15px",
@@ -193,9 +250,6 @@ const styles = {
     transition: "background-color 0.3s",
     fontWeight: "bold",
     textTransform: "uppercase",
-    ":hover": {
-      backgroundColor: "#555",
-    },
   },
 };
 

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import LeadModal from './leadmodal';
+import useTrackUserSource from '../../hooks/useTrackUserSource';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const location = useLocation(); // <-- React Router Hook
+  const location = useLocation();
+  const visitData = useTrackUserSource();
+  const formSubmitted = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -18,6 +21,11 @@ const Navbar = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  const handleFormSubmit = () => {
+    formSubmitted.current = true;
+    setIsModalOpen(false);
+  };
 
   const navLinks = [
     { label: 'Home', href: '/' },
@@ -108,7 +116,14 @@ const Navbar = () => {
         )}
       </nav>
 
-      {isModalOpen && <LeadModal isOpen={isModalOpen} onClose={closeModal} />}
+      {isModalOpen && (
+        <LeadModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          onSubmit={handleFormSubmit}
+          visitData={visitData}
+        />
+      )}
 
       <style>{`
         .navbar {
