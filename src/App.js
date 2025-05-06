@@ -1,5 +1,5 @@
 // App.js
-import React, { useState, useRef } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -30,10 +30,10 @@ function App() {
         <a href="https://www.facebook.com/TheChairbord" target="_blank" rel="noopener noreferrer" style={{ color: "#4267B2" }}>
           <FaFacebookF />
         </a>
-        <a href="https://x.com/i/flow/login?redirect_after_login=%2FTheChairbord" target="_blank" rel="noopener noreferrer" style={{ color: "#1DA1F2" }}>
+        <a href="https://x.com/TheChairbord" target="_blank" rel="noopener noreferrer" style={{ color: "#1DA1F2" }}>
           <FaXTwitter />
         </a>
-        <a href="https://www.linkedin.com/company/chairbord/posts/?feedView=all" target="_blank" rel="noopener noreferrer" style={{ color: "#0077B5" }}>
+        <a href="https://www.linkedin.com/company/chairbord/" target="_blank" rel="noopener noreferrer" style={{ color: "#0077B5" }}>
           <FaLinkedinIn />
         </a>
         <a href="https://www.instagram.com/chairbord.official/" target="_blank" rel="noopener noreferrer" style={{ color: "#E1306C" }}>

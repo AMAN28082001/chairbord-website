@@ -40,15 +40,15 @@ const ContactForm = () => {
   const contactInfo = [
     {
       heading: "Head Office",
-      text: "E=188, Apparel Park, RICCO Industrial Area, Mahal Road, Jagatpura, Jajpur (Rajasthan) – 302022, INDIA",
+      text: "ChairBord Pvt Ltd, 13 Sapna Tower, Near Marudhar Mart, Kalwar Road, Govindpura, Jaipur, Rajasthan-302012",
     },
     {
       heading: "Company Email",
-      text: "info@mescoindia.com",
+      text: "connect@chairbord.com",
     },
     {
       heading: "Contact Us",
-      text: "+91 95494 44484",
+      text: "+91-9269666646",
     },
   ];
 
@@ -60,7 +60,7 @@ const ContactForm = () => {
     },
     {
       icon: <FaXTwitter style={{ color: "#1da1f2", fontSize: "24px" }} />,
-      link: "https://x.com/i/flow/login?redirect_after_login=%2FTheChairbord",
+      link: "https://x.com/TheChairbord",
       label: "Twitter",
     },
     {
@@ -70,7 +70,7 @@ const ContactForm = () => {
     },
     {
       icon: <FaLinkedin style={{ color: "#0077b5", fontSize: "24px" }} />,
-      link: "https://www.linkedin.com/company/chairbord/posts/?feedView=all",
+      link: "https://www.linkedin.com/company/chairbord",
       label: "LinkedIn",
     },
     {
@@ -88,7 +88,7 @@ const ContactForm = () => {
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>Get IN Touch</h2>
-      <p style={styles.subHeading}>Have a Project in Mind? Contact Us</p>
+      <p style={styles.subHeading}>Want to get in touch? We'd love to hear from you. Here's how you can reach us...</p>
 
       <div style={styles.card}>
         <div style={styles.flexContainer}>
@@ -104,8 +104,9 @@ const ContactForm = () => {
               <h3 style={styles.infoHeading}>Connect With Us</h3>
               <div style={styles.socialIcons}>
                 {socialMediaLinks.map((social, index) => (
-                  <a key={index} href={social.link} style={styles.socialIcon} aria-label={social.label}>
-                    {social.icon}
+                  <a key={index} href={social.link}
+                   style={styles.socialIcon} aria-label={social.label}  target="_blank" rel="noopener noreferrer">
+                    {social.icon} 
                   </a>
                 ))}
               </div>

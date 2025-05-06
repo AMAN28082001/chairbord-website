@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -28,7 +34,6 @@
   color: #61dafb;
 }
 
-
 .social-icons {
   position: fixed;
   top: 40%;
@@ -39,13 +44,11 @@
   gap: 15px;
   padding: 10px 5px;
   z-index: 1000;
-  background-color: transparent;
+  background-color: #f7fafc;
   border-radius: 0 8px 8px 0;
-  background-color: #f7fafc
 }
 
 .social-icons a {
-  /* color: #000000; */
   font-size: 20px;
   padding: 10px;
   display: flex;
@@ -55,7 +58,6 @@
 }
 
 .social-icons a:hover {
-  /* background-color: #3674B5; */
   transform: scale(1.1);
   border-radius: 50%;
 }
@@ -65,7 +67,6 @@
     display: none;
   }
 }
-
 
 @keyframes App-logo-spin {
   from {
