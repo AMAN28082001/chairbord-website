@@ -150,10 +150,11 @@ const SolarRecommendationSystem = () => {
             box-shadow: 0 0 8px rgba(0,0,0,0.1);
           }
           .card {
-            background: white;
             padding: 1rem;
             border-radius: 10px;
             box-shadow: 0 0 5px rgba(0,0,0,0.08);
+            background: linear-gradient(248deg,rgba(196, 196, 196, 1) 0%, rgba(237, 255, 255, 1) 35%);
+
           }
           .card-title {
             font-weight: bold;

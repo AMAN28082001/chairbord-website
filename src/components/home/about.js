@@ -15,7 +15,7 @@ const About = () => {
         {
             heading: "WE'RE\nRAYZON SOLAR",
             paragraph1: "Rayzon Solar, India's top solar panel manufacturing company, has emerged as a leader in the industry with its innovative solutions and widespread presence PAN India. With a strong foothold in the United States and Europe, the company has garnered the trust of more than 1000 satisfied customers worldwide.",
-            paragraph2: "Rayzon Solar's production capacity has reached an impressive 6 GW with the latest TOPCon technology. This achievement is made possible because of our visionary founder's continuous drive for innovation and excellence."
+            paragraph2: "Renowned for our commitment to quality, Rayzon Solar has been consistently recognized as one of the top manufacturers of solar panels since 2017."
         }
     ];
 
