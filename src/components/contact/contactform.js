@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { FaThreads, FaXTwitter } from "react-icons/fa6";
 import useTrackUserSource from "../../hooks/useTrackUserSource";
 
+// Hook to detect screen width
+const useIsMobile = (breakpoint = 768) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
+};
+
 const ContactForm = () => {
   const visitData = useTrackUserSource();
+  const isMobile = useIsMobile();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -15,7 +29,7 @@ const ContactForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -85,13 +99,20 @@ const ContactForm = () => {
     },
   ];
 
+  const flexContainerStyle = {
+    ...styles.flexContainer,
+    flexDirection: isMobile ? "column" : "row",
+  };
+
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>Get IN Touch</h2>
-      <p style={styles.subHeading}>Want to get in touch? We'd love to hear from you. Here's how you can reach us...</p>
+      <p style={styles.subHeading}>
+        Want to get in touch? We'd love to hear from you. Here's how you can reach us...
+      </p>
 
       <div style={styles.card}>
-        <div style={styles.flexContainer}>
+        <div style={flexContainerStyle}>
           <div style={styles.leftColumn}>
             {contactInfo.map((info, index) => (
               <div key={index} style={styles.infoSection}>
@@ -104,9 +125,15 @@ const ContactForm = () => {
               <h3 style={styles.infoHeading}>Connect With Us</h3>
               <div style={styles.socialIcons}>
                 {socialMediaLinks.map((social, index) => (
-                  <a key={index} href={social.link}
-                   style={styles.socialIcon} aria-label={social.label}  target="_blank" rel="noopener noreferrer">
-                    {social.icon} 
+                  <a
+                    key={index}
+                    href={social.link}
+                    style={styles.socialIcon}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {social.icon}
                   </a>
                 ))}
               </div>
@@ -163,7 +190,7 @@ const styles = {
   container: {
     maxWidth: "1400px",
     margin: "0 auto",
-    padding: "40px 20px",
+    padding: "20px 20px",
     fontFamily: "'Arial', sans-serif",
     color: "#333",
   },
@@ -188,7 +215,6 @@ const styles = {
   },
   flexContainer: {
     display: "flex",
-    flexWrap: "wrap",
     gap: "40px",
     justifyContent: "space-between",
   },
@@ -223,6 +249,7 @@ const styles = {
     display: "flex",
     gap: "15px",
     marginTop: "10px",
+    flexWrap: "wrap",
   },
   socialIcon: {
     display: "inline-block",
