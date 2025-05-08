@@ -719,16 +719,17 @@ const SolarRecommendationSystem = () => {
   <div style={{ 
     display: 'flex', 
     flexDirection: window.innerWidth < 768 ? 'column' : 'row',
-    alignItems: 'center',
+    justifyContent: window.innerWidth < 768 ? 'center' : 'space-between',
+    alignItems: window.innerWidth < 768 ? 'center' : 'flex-start',
     gap: '1rem'
   }}>
     <div style={{ textAlign: window.innerWidth < 768 ? 'center' : 'left' }}>
       <h2 style={{ fontSize: '1.5rem' }}>Solar Recommendation Calculator</h2>
       <p>Estimate solar potential and savings</p>
     </div>
-    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-  <Sun size={window.innerWidth < 768 ? 32 : 50} />
-</div>
+    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: window.innerWidth < 768 ? '0' : '1.5rem', marginBottom: window.innerWidth < 768 ? '1.5rem' : '0'  }}>
+      <Sun size={window.innerWidth < 768 ? 32 : 50} />
+    </div>
   </div>
 </div>
 
